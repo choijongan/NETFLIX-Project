@@ -1,8 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Home from './page/Home';
 import MovieDetail from './page/MovieDetail';
 import Movies from './page/Movies';
+import Navigation from './components/Navigation';
 
 //1. 3개페이지 필요 홈페이지, movie페이지, movieDetail페이지
 //2. 홈페이지에서 배너를 볼 수 있다.
@@ -20,6 +22,7 @@ import Movies from './page/Movies';
 function App() {
   return (
     <div>
+      <Navigation />
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/movies' element={<Movies/>}/>
