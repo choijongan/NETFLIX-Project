@@ -1,5 +1,6 @@
 import api from "../api";
 
+
 function getMovies(){
     return async (dispatch)=> {
         const popularMovieApi = await api.get('/movie/popular?api_key=<<api_key>>&language=en-US&page=1')
