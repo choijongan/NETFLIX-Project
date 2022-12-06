@@ -16,9 +16,10 @@ function getMovies(){
             )
             
             let [popularMovies, topRatedMovies, upcomingMovies] = await Promise.all([popularMovieApi, topRatedApi, upComingApi]) //정보 오기전에 한 번만 await 기다리고, 동시에 진행시켜!
-            console.log(popularMovies)
-            console.log(topRatedMovies)
-            console.log(upcomingMovies)
+            dispatch({
+                type: 'GET_MOVIES_SUCCESS',
+                payload: { popularMovies:popularMovies.data, topRatedMovies:topRatedMovies.data, upcomingMovies:upcomingMovies.data},
+            })
         // let url = `/movie/popular?api_key=<<api_key>>&language=en-US&page=1`;
         // let response = await fetch(url);
         // let data = await response.json();
