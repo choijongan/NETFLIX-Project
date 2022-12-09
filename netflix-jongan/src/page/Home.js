@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { movieAction } from '../redux/action/MovieAction'
 import Banner from '../components/Banner'
+import MovieSlide from '../components/MovieSlide'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -13,6 +14,13 @@ const Home = () => {
   return ( //조건부 렌더링, popularmovies.results값이 있으면 banner를 보여준다는 뜻.
     <div> 
       {popularMovies.results && <Banner movie={popularMovies.results[0]} />} 
+
+      <h1>Popular Movie</h1>
+      <MovieSlide movies={popularMovies} />
+      <h1>Top rated Movie</h1>
+      <MovieSlide movies={topRatedMovies} />
+      <h1>Upcoming Movie</h1>
+      <MovieSlide movies={upcomingMovies} />
     </div>
   )
 }
