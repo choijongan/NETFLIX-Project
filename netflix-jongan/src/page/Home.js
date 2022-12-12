@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { movieAction } from '../redux/action/MovieAction'
 import Banner from '../components/Banner'
 import MovieSlide from '../components/MovieSlide'
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -11,8 +12,20 @@ const Home = () => {
   useEffect(()=> {
     dispatch(movieAction.getMovies())
   },[])
+  if(loading){
+    return <ClipLoader
+    color="#ffff"
+    loading={loading}
+    size={150}
+    aria-label="Loading Spinner"
+    data-testid="loader"
+  />
+    }
   return ( //조건부 렌더링, popularmovies.results값이 있으면 banner를 보여준다는 뜻.
     <div> 
+
+      
+
       {popularMovies.results && <Banner movie={popularMovies.results[0]} />} 
 
       <h1>Popular Movie</h1>
