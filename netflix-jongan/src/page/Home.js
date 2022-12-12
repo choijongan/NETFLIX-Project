@@ -7,7 +7,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 const Home = () => {
   const dispatch = useDispatch()
-  const { popularMovies, topRatedMovies, upcomingMovies } = useSelector(state=>state.movie)
+  const { popularMovies, topRatedMovies, upcomingMovies, loading } = useSelector(state=>state.movie)
   
   useEffect(()=> {
     dispatch(movieAction.getMovies())
@@ -19,7 +19,7 @@ const Home = () => {
   //false: 데이터 도착 후, 에러가 났을때
   if(loading){
     return <ClipLoader
-    color="#ffff"
+    color={"#b80000"}
     loading={loading}
     size={150}
     aria-label="Loading Spinner"
@@ -28,10 +28,7 @@ const Home = () => {
     }
   return ( //조건부 렌더링, popularmovies.results값이 있으면 banner를 보여준다는 뜻.
     <div> 
-
-      
-
-      {popularMovies.results && <Banner movie={popularMovies.results[0]} />} 
+      <Banner movie={popularMovies.results[0]} />
 
       <h1>Popular Movie</h1>
       <MovieSlide movies={popularMovies} />
