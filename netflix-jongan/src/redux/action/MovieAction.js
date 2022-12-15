@@ -16,11 +16,21 @@ function getMovies(){
             const upComingApi =  api.get(
                 `/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
             )
+
+            const genreApi = api.get(
+                `/genre/movie/list?api_key=${API_KEY}&language=en-US`
+            )
             
-            let [popularMovies, topRatedMovies, upcomingMovies] = await Promise.all([popularMovieApi, topRatedApi, upComingApi]) //정보 오기전에 한 번만 await 기다리고, 동시에 진행시켜!
+            let [popularMovies, topRatedMovies, upcomingMovies, genreList] = await Promise.all([popularMovieApi, topRatedApi, upComingApi, genreApi]) //정보 오기전에 한 번만 await 기다리고, 동시에 진행시켜!
+            console.log("genrelist?", genreList)
             dispatch({
                 type: 'GET_MOVIES_SUCCESS',
-                payload: { popularMovies:popularMovies.data, topRatedMovies:topRatedMovies.data, upcomingMovies:upcomingMovies.data},
+                payload: { 
+                    popularMovies:popularMovies.data, 
+                    topRatedMovies:topRatedMovies.data, 
+                    upcomingMovies:upcomingMovies.data,
+                    genreList: genreList.data.genres,
+                },
             })
         } catch (error) {
             // 에러 핸들링 하는곳
